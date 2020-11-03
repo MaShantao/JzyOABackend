@@ -9,7 +9,7 @@
 
 ​		数据库建模使用的是国内比较流行的Powerdesigner。由于项目的数据不是很强关联，所以数据库在设计的时候，有些表之间没有建立关联，这是根据具体业务来做的。
 
-![](https://raw.githubusercontent.com/MaShantao/JzyOABackend/master/resource/database designer.png)
+![](https://raw.githubusercontent.com/MaShantao/JzyOABackend/master/resource/database%20designer.png)
 
 
 
