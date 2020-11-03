@@ -9,7 +9,7 @@
 
 ​		数据库建模使用的是国内比较流行的Powerdesigner。由于项目的数据不是很强关联，所以数据库在设计的时候，有些表之间没有建立关联，这是根据具体业务来做的。
 
-![](https://github.com/MaShantao/JzyOABackend/tree/master/resource/database designer.png)
+![](https://raw.githubusercontent.com/MaShantao/JzyOABackend/master/resource/database designer.png)
 
 
 
@@ -27,15 +27,15 @@
 
 原始的PDF模板如下：
 
-![](https://github.com/MaShantao/JzyOABackend/tree/master/resource/PDF-Original.png)
+![](https://raw.githubusercontent.com/MaShantao/JzyOABackend/master/resource/PDF-Original.png)
 
 我们安装完Acrobat之后使用鼠标右键PDF模板，选择 **使用Acrobat编辑**->**文件**->**创建**->**创建表单**
 
-![](https://github.com/MaShantao/JzyOABackend/tree/master/resource/Acrobat创建表单.png)
+![](https://raw.githubusercontent.com/MaShantao/JzyOABackend/master/resource/Acrobat创建表单.png)
 
 然后**选择文字域**，即可进行编辑。无论是文字还是图片，都使用文字域进行框选。
 
-![](https://github.com/MaShantao/JzyOABackend/tree/master/resource/Acrobat创建表单2.png)
+![](https://raw.githubusercontent.com/MaShantao/JzyOABackend/master/resource/Acrobat创建表单2.png)
 
 ### 2.3 模板生成代码
 
