@@ -4,7 +4,7 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <property name="java-output-path" value="/ncovreportsystem/target/classes"/>
-        <property name="context-root" value="JzyOA"/>
+        <property name="java-output-path" value="/JzyOABackend/target/classes"/>
+        <property name="context-root" value="ncovreportsystem"/>
     </wb-module>
 </project-modules>
