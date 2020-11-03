@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.marico.ncovreportsystem.mapper.TbRightMapper" >
+  <resultMap id="BaseResultMap" type="com.marico.ncovreportsystem.pojo.TbRight" >
+    <id column="right_id" property="rightId" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="right_name" property="rightName" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    right_id, parent_id, right_name, path, level
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.marico.ncovreportsystem.pojo.TbRightExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_right
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_right
+    where right_id = #{rightId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_right
+    where right_id = #{rightId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.marico.ncovreportsystem.pojo.TbRightExample" >
+    delete from tb_right
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.marico.ncovreportsystem.pojo.TbRight" >
+    insert into tb_right (right_id, parent_id, right_name, 
+      path, level)
+    values (#{rightId,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{rightName,jdbcType=VARCHAR}, 
+      #{path,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.marico.ncovreportsystem.pojo.TbRight" >
+    insert into tb_right
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rightId != null" >
+        right_id,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="rightName != null" >
+        right_name,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rightId != null" >
+        #{rightId,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="rightName != null" >
+        #{rightName,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.marico.ncovreportsystem.pojo.TbRightExample" resultType="java.lang.Integer" >
+    select count(*) from tb_right
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_right
+    <set >
+      <if test="record.rightId != null" >
+        right_id = #{record.rightId,jdbcType=INTEGER},
+      </if>
+      <if test="record.parentId != null" >
+        parent_id = #{record.parentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.rightName != null" >
+        right_name = #{record.rightName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.path != null" >
+        path = #{record.path,jdbcType=VARCHAR},
+      </if>
+      <if test="record.level != null" >
+        level = #{record.level,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_right
+    set right_id = #{record.rightId,jdbcType=INTEGER},
+      parent_id = #{record.parentId,jdbcType=INTEGER},
+      right_name = #{record.rightName,jdbcType=VARCHAR},
+      path = #{record.path,jdbcType=VARCHAR},
+      level = #{record.level,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.marico.ncovreportsystem.pojo.TbRight" >
+    update tb_right
+    <set >
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="rightName != null" >
+        right_name = #{rightName,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+    </set>
+    where right_id = #{rightId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.marico.ncovreportsystem.pojo.TbRight" >
+    update tb_right
+    set parent_id = #{parentId,jdbcType=INTEGER},
+      right_name = #{rightName,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR},
+      level = #{level,jdbcType=INTEGER}
+    where right_id = #{rightId,jdbcType=INTEGER}
+  </update>
+</mapper>

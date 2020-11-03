@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.marico.ncovreportsystem.mapper.TbUserMapper">
+	<!-- 角色的映射 -->
+	<resultMap id="RoleResultMap"
+		type="com.marico.ncovreportsystem.pojo.TbRole">
+		<id column="role_id" property="roleId" jdbcType="INTEGER" />
+		<result column="role.role_name" property="roleName"
+			jdbcType="VARCHAR" />
+		<result column="role.role_intro" property="roleIntro"
+			jdbcType="VARCHAR" />
+		<result column="role.role_status" property="roleStatus"
+			jdbcType="INTEGER" />
+	</resultMap>
+
+	<resultMap id="BaseResultMap"
+		type="com.marico.ncovreportsystem.pojo.TbUser">
+		<id column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="role_id" property="roleId" jdbcType="INTEGER" />
+		<result column="login_name" property="loginName"
+			jdbcType="VARCHAR" />
+		<result column="login_passwd" property="loginPasswd"
+			jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="telephone" property="telephone"
+			jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="register_time" property="registerTime"
+			jdbcType="VARCHAR" />
+		<result column="department" property="department"
+			jdbcType="VARCHAR" />
+		<result column="post" property="post" jdbcType="VARCHAR" />
+		<result column="user_status" property="userStatus"
+			jdbcType="INTEGER" />
+		<!-- 评审者发的实体 -->
+		<association property="role"
+			resultMap="RoleResultMap" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		user_id, user.role_id AS 'role_id', role.role_name AS 'role.role_name',
+		login_name, login_passwd, name, telephone, email,
+		register_time,department, post, user_status
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.marico.ncovreportsystem.pojo.TbUserExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from tb_user user INNER JOIN tb_role role on role.role_id = user.role_id
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from tb_user
+		where user_id = #{userId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from tb_user
+		where user_id =
+		#{userId,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample"
+		parameterType="com.marico.ncovreportsystem.pojo.TbUserExample">
+		delete from tb_user
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert"
+		parameterType="com.marico.ncovreportsystem.pojo.TbUser">
+		insert into tb_user (user_id, role_id, login_name,
+		login_passwd, name, telephone,
+		email, register_time, department,
+		post,
+		user_status)
+		values (#{userId,jdbcType=INTEGER},
+		#{roleId,jdbcType=INTEGER},
+		#{loginName,jdbcType=VARCHAR},
+		#{loginPasswd,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+		#{telephone,jdbcType=VARCHAR},
+		#{email,jdbcType=VARCHAR},
+		#{registerTime,jdbcType=VARCHAR},
+		#{department,jdbcType=VARCHAR},
+		#{post,jdbcType=VARCHAR}, #{userStatus,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.marico.ncovreportsystem.pojo.TbUser">
+		insert into tb_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="roleId != null">
+				role_id,
+			</if>
+			<if test="loginName != null">
+				login_name,
+			</if>
+			<if test="loginPasswd != null">
+				login_passwd,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="telephone != null">
+				telephone,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="registerTime != null">
+				register_time,
+			</if>
+			<if test="department != null">
+				department,
+			</if>
+			<if test="post != null">
+				post,
+			</if>
+			<if test="userStatus != null">
+				user_status,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="roleId != null">
+				#{roleId,jdbcType=INTEGER},
+			</if>
+			<if test="loginName != null">
+				#{loginName,jdbcType=VARCHAR},
+			</if>
+			<if test="loginPasswd != null">
+				#{loginPasswd,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				#{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="registerTime != null">
+				#{registerTime,jdbcType=VARCHAR},
+			</if>
+			<if test="department != null">
+				#{department,jdbcType=VARCHAR},
+			</if>
+			<if test="post != null">
+				#{post,jdbcType=VARCHAR},
+			</if>
+			<if test="userStatus != null">
+				#{userStatus,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample"
+		parameterType="com.marico.ncovreportsystem.pojo.TbUserExample"
+		resultType="java.lang.Integer">
+		select count(*) from tb_user
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update tb_user
+		<set>
+			<if test="record.userId != null">
+				user_id = #{record.userId,jdbcType=INTEGER},
+			</if>
+			<if test="record.roleId != null">
+				role_id = #{record.roleId,jdbcType=INTEGER},
+			</if>
+			<if test="record.loginName != null">
+				login_name = #{record.loginName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.loginPasswd != null">
+				login_passwd = #{record.loginPasswd,jdbcType=VARCHAR},
+			</if>
+			<if test="record.name != null">
+				name = #{record.name,jdbcType=VARCHAR},
+			</if>
+			<if test="record.telephone != null">
+				telephone = #{record.telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="record.email != null">
+				email = #{record.email,jdbcType=VARCHAR},
+			</if>
+			<if test="record.registerTime != null">
+				register_time = #{record.registerTime,jdbcType=VARCHAR},
+			</if>
+			<if test="record.department != null">
+				department = #{record.department,jdbcType=VARCHAR},
+			</if>
+			<if test="record.post != null">
+				post = #{record.post,jdbcType=VARCHAR},
+			</if>
+			<if test="record.userStatus != null">
+				user_status = #{record.userStatus,jdbcType=INTEGER},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update tb_user
+		set user_id = #{record.userId,jdbcType=INTEGER},
+		role_id
+		= #{record.roleId,jdbcType=INTEGER},
+		login_name =
+		#{record.loginName,jdbcType=VARCHAR},
+		login_passwd =
+		#{record.loginPasswd,jdbcType=VARCHAR},
+		name =
+		#{record.name,jdbcType=VARCHAR},
+		telephone =
+		#{record.telephone,jdbcType=VARCHAR},
+		email =
+		#{record.email,jdbcType=VARCHAR},
+		register_time =
+		#{record.registerTime,jdbcType=VARCHAR},
+		department =
+		#{record.department,jdbcType=VARCHAR},
+		post =
+		#{record.post,jdbcType=VARCHAR},
+		user_status =
+		#{record.userStatus,jdbcType=INTEGER}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.marico.ncovreportsystem.pojo.TbUser">
+		update tb_user
+		<set>
+			<if test="roleId != null">
+				role_id = #{roleId,jdbcType=INTEGER},
+			</if>
+			<if test="loginName != null">
+				login_name = #{loginName,jdbcType=VARCHAR},
+			</if>
+			<if test="loginPasswd != null">
+				login_passwd = #{loginPasswd,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				telephone = #{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="registerTime != null">
+				register_time = #{registerTime,jdbcType=VARCHAR},
+			</if>
+			<if test="department != null">
+				department = #{department,jdbcType=VARCHAR},
+			</if>
+			<if test="post != null">
+				post = #{post,jdbcType=VARCHAR},
+			</if>
+			<if test="userStatus != null">
+				user_status = #{userStatus,jdbcType=INTEGER},
+			</if>
+		</set>
+		where user_id = #{userId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.marico.ncovreportsystem.pojo.TbUser">
+		update tb_user
+		set role_id = #{roleId,jdbcType=INTEGER},
+		login_name = #{loginName,jdbcType=VARCHAR},
+		login_passwd =
+		#{loginPasswd,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		telephone = #{telephone,jdbcType=VARCHAR},
+		email =
+		#{email,jdbcType=VARCHAR},
+		register_time =
+		#{registerTime,jdbcType=VARCHAR},
+		department =
+		#{department,jdbcType=VARCHAR},
+		post = #{post,jdbcType=VARCHAR},
+		user_status = #{userStatus,jdbcType=INTEGER}
+		where user_id =
+		#{userId,jdbcType=INTEGER}
+	</update>
+</mapper>

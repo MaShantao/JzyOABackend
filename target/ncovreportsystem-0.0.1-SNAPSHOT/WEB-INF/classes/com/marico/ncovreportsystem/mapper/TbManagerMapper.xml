@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.marico.ncovreportsystem.mapper.TbManagerMapper" >
+  <resultMap id="BaseResultMap" type="com.marico.ncovreportsystem.pojo.TbManager" >
+    <id column="manager_id" property="managerId" jdbcType="INTEGER" />
+    <result column="manager_name" property="managerName" jdbcType="VARCHAR" />
+    <result column="autograph" property="autograph" jdbcType="VARCHAR" />
+    <result column="manager_type" property="managerType" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    manager_id, manager_name, autograph, manager_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.marico.ncovreportsystem.pojo.TbManagerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_manager
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_manager
+    where manager_id = #{managerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_manager
+    where manager_id = #{managerId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.marico.ncovreportsystem.pojo.TbManagerExample" >
+    delete from tb_manager
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.marico.ncovreportsystem.pojo.TbManager" >
+    insert into tb_manager (manager_id, manager_name, autograph, 
+      manager_type)
+    values (#{managerId,jdbcType=INTEGER}, #{managerName,jdbcType=VARCHAR}, #{autograph,jdbcType=VARCHAR}, 
+      #{managerType,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.marico.ncovreportsystem.pojo.TbManager" >
+    insert into tb_manager
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="managerId != null" >
+        manager_id,
+      </if>
+      <if test="managerName != null" >
+        manager_name,
+      </if>
+      <if test="autograph != null" >
+        autograph,
+      </if>
+      <if test="managerType != null" >
+        manager_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="managerId != null" >
+        #{managerId,jdbcType=INTEGER},
+      </if>
+      <if test="managerName != null" >
+        #{managerName,jdbcType=VARCHAR},
+      </if>
+      <if test="autograph != null" >
+        #{autograph,jdbcType=VARCHAR},
+      </if>
+      <if test="managerType != null" >
+        #{managerType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.marico.ncovreportsystem.pojo.TbManagerExample" resultType="java.lang.Integer" >
+    select count(*) from tb_manager
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_manager
+    <set >
+      <if test="record.managerId != null" >
+        manager_id = #{record.managerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.managerName != null" >
+        manager_name = #{record.managerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.autograph != null" >
+        autograph = #{record.autograph,jdbcType=VARCHAR},
+      </if>
+      <if test="record.managerType != null" >
+        manager_type = #{record.managerType,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_manager
+    set manager_id = #{record.managerId,jdbcType=INTEGER},
+      manager_name = #{record.managerName,jdbcType=VARCHAR},
+      autograph = #{record.autograph,jdbcType=VARCHAR},
+      manager_type = #{record.managerType,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.marico.ncovreportsystem.pojo.TbManager" >
+    update tb_manager
+    <set >
+      <if test="managerName != null" >
+        manager_name = #{managerName,jdbcType=VARCHAR},
+      </if>
+      <if test="autograph != null" >
+        autograph = #{autograph,jdbcType=VARCHAR},
+      </if>
+      <if test="managerType != null" >
+        manager_type = #{managerType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where manager_id = #{managerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.marico.ncovreportsystem.pojo.TbManager" >
+    update tb_manager
+    set manager_name = #{managerName,jdbcType=VARCHAR},
+      autograph = #{autograph,jdbcType=VARCHAR},
+      manager_type = #{managerType,jdbcType=INTEGER}
+    where manager_id = #{managerId,jdbcType=INTEGER}
+  </update>
+</mapper>
