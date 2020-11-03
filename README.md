@@ -49,9 +49,9 @@
 	<version>1.4.01</version>  
 </dependency> 	
  <dependency>
-<groupId>org.apache.poi</groupId>
-<artifactId>poi</artifactId>
-<version>3.15</version>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi</artifactId>
+    <version>3.15</version>
 </dependency>
 <dependency>
 	<groupId>org.apache.poi</groupId>
@@ -261,7 +261,7 @@ public class CrossFilter implements Filter{
 ```xml
  <filter>
     <filter-name>CrossFilter</filter-name>
-    <filter-class>com.marico.ncovreportsystem.filter.CrossFilter</filter-class>
+    <filter-class>com.jzyoa.filter.CrossFilter</filter-class>
     <init-param>
       <param-name>IsCross</param-name>
       <param-value>true</param-value>
