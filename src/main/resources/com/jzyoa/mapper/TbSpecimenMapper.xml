@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper
-	namespace="com.marico.ncovreportsystem.mapper.TbSpecimenMapper">
+	namespace="com.jzyoa.mapper.TbSpecimenMapper">
 
 
 	<!-- 标本结果的映射 specimen_result -->
 	<resultMap id="SpecimenResultResultMap"
-		type="com.marico.ncovreportsystem.pojo.TbDictionary">
+		type="com.jzyoa.pojo.TbDictionary">
 		<id column="report.specimen_result_id" property="dictId"
 			jdbcType="INTEGER" />
 		<result column="report.specimen_result.dict_name"
@@ -18,7 +18,7 @@
 	</resultMap>
 	<!-- 参考值的映射 reference_value -->
 	<resultMap id="ReferenceValueResultMap"
-		type="com.marico.ncovreportsystem.pojo.TbDictionary">
+		type="com.jzyoa.pojo.TbDictionary">
 		<id column="report.reference_value_id" property="dictId"
 			jdbcType="INTEGER" />
 		<result column="report.reference_value.dict_name"
@@ -30,7 +30,7 @@
 	</resultMap>
 	<!-- 样本类型的映射 specimen_type -->
 	<resultMap id="SpecimenTypeResultMap"
-		type="com.marico.ncovreportsystem.pojo.TbDictionary">
+		type="com.jzyoa.pojo.TbDictionary">
 		<id column="specimen_type_id" property="dictId" jdbcType="INTEGER" />
 		<result column="specimen_type.dict_name" property="dictName"
 			jdbcType="VARCHAR" />
@@ -42,7 +42,7 @@
 
 	<!-- 病人类型类型的映射 PatientType -->
 	<resultMap id="PatientTypeResultMap"
-		type="com.marico.ncovreportsystem.pojo.TbDictionary">
+		type="com.jzyoa.pojo.TbDictionary">
 		<id column="patient_type_id" property="dictId" jdbcType="INTEGER" />
 		<result column="patient_type.dict_name" property="dictName"
 			jdbcType="VARCHAR" />
@@ -54,7 +54,7 @@
 
 	<!-- 样本情况的映射 specimen_situation -->
 	<resultMap id="SpecimenSituationResultMap"
-		type="com.marico.ncovreportsystem.pojo.TbDictionary">
+		type="com.jzyoa.pojo.TbDictionary">
 		<id column="specimen_situation_id" property="dictId"
 			jdbcType="INTEGER" />
 		<result column="specimen_situation.dict_name"
@@ -67,7 +67,7 @@
 
 	<!-- 测试类型 TestTypeResultMap -->
 	<resultMap id="TestTypeResultMap"
-		type="com.marico.ncovreportsystem.pojo.TbDictionary">
+		type="com.jzyoa.pojo.TbDictionary">
 		<id column="test_type_id" property="dictId" jdbcType="INTEGER" />
 		<result column="test_type.dict_name" property="dictName"
 			jdbcType="VARCHAR" />
@@ -79,7 +79,7 @@
 
 	<!-- 报告者的映射 reporter -->
 	<resultMap id="ReporterResultMap"
-		type="com.marico.ncovreportsystem.pojo.TbManager">
+		type="com.jzyoa.pojo.TbManager">
 		<id column="report.reporter_id" property="managerId"
 			jdbcType="INTEGER" />
 		<result column="reporter.manager_name" property="managerName"
@@ -92,7 +92,7 @@
 
 	<!-- 审核者的映射 reviewer -->
 	<resultMap id="ReviewerResultMap"
-		type="com.marico.ncovreportsystem.pojo.TbManager">
+		type="com.jzyoa.pojo.TbManager">
 		<id column="report.reviewer_id" property="managerId"
 			jdbcType="INTEGER" />
 		<result column="reviewer.manager_name" property="managerName"
@@ -105,7 +105,7 @@
 
 	<!-- 医院的映射 hospital -->
 	<resultMap id="HospitalResultMap"
-		type="com.marico.ncovreportsystem.pojo.TbHospital">
+		type="com.jzyoa.pojo.TbHospital">
 		<id column="hos_id" property="hosId" jdbcType="INTEGER" />
 		<result column="hospital.hos_name" property="hosName"
 			jdbcType="VARCHAR" />
@@ -114,7 +114,7 @@
 	</resultMap>
 	<!-- 科室的映射 department -->
 	<resultMap id="DepartmentResultMap"
-		type="com.marico.ncovreportsystem.pojo.TbDepartment">
+		type="com.jzyoa.pojo.TbDepartment">
 		<id column="dept_id" property="deptId" jdbcType="INTEGER" />
 		<result column="department.hos_id" property="hosId"
 			jdbcType="INTEGER" />
@@ -123,7 +123,7 @@
 	</resultMap>
 	<!-- 医sheng的映射 doctor -->
 	<resultMap id="DoctorResultMap"
-		type="com.marico.ncovreportsystem.pojo.TbDoctor">
+		type="com.jzyoa.pojo.TbDoctor">
 		<id column="doc_id" property="docId" jdbcType="INTEGER" />
 		<result column="doctor.dept_id" property="deptId"
 			jdbcType="INTEGER" />
@@ -133,7 +133,7 @@
 	</resultMap>
 	<!-- 报告的映射report -->
 	<resultMap id="ReportResultMap"
-		type="com.marico.ncovreportsystem.pojo.TbReport">
+		type="com.jzyoa.pojo.TbReport">
 		<id column="report.report_id" property="reportId"
 			jdbcType="INTEGER" />
 		<result column="report.specimen_id" property="specimenId"
@@ -163,7 +163,7 @@
 	</resultMap>
 
 	<resultMap id="BaseResultMap"
-		type="com.marico.ncovreportsystem.pojo.TbSpecimen">
+		type="com.jzyoa.pojo.TbSpecimen">
 		<id column="specimen_id" property="specimenId" jdbcType="INTEGER" />
 		<result column="specimen_code" property="specimenCode"
 			jdbcType="VARCHAR" />
@@ -329,7 +329,7 @@
 	</sql>
 
 	<select id="selectByExample" resultMap="BaseResultMap"
-		parameterType="com.marico.ncovreportsystem.pojo.TbSpecimenExample">
+		parameterType="com.jzyoa.pojo.TbSpecimenExample">
 		select
 		<if test="distinct">
 			distinct
@@ -345,7 +345,7 @@
 	</select>
 
 	<select id="selectDetailsByExample"
-		parameterType="com.marico.ncovreportsystem.pojo.TbSpecimenExample"
+		parameterType="com.jzyoa.pojo.TbSpecimenExample"
 		resultMap="BaseResultMap">
 		select
 		<if test="distinct">
@@ -392,7 +392,7 @@
 	</select>
 
 	<select id="countDetailsByExample"
-		parameterType="com.marico.ncovreportsystem.pojo.TbSpecimenExample"
+		parameterType="com.jzyoa.pojo.TbSpecimenExample"
 		resultType="java.lang.Integer">
 		select count(*)
 		<if test="distinct">
@@ -449,14 +449,14 @@
 		#{specimenId,jdbcType=INTEGER}
 	</delete>
 	<delete id="deleteByExample"
-		parameterType="com.marico.ncovreportsystem.pojo.TbSpecimenExample">
+		parameterType="com.jzyoa.pojo.TbSpecimenExample">
 		delete from tb_specimen
 		<if test="_parameter != null">
 			<include refid="Example_Where_Clause" />
 		</if>
 	</delete>
 	<insert id="insert"
-		parameterType="com.marico.ncovreportsystem.pojo.TbSpecimen">
+		parameterType="com.jzyoa.pojo.TbSpecimen">
 		insert into tb_specimen (specimen_id, specimen_code,
 		hos_id,
 		dept_id, doc_id, test_type_id,
@@ -485,7 +485,7 @@
 		)
 	</insert>
 	<insert id="insertSelective"
-		parameterType="com.marico.ncovreportsystem.pojo.TbSpecimen">
+		parameterType="com.jzyoa.pojo.TbSpecimen">
 		insert into tb_specimen
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="specimenId != null">
@@ -601,7 +601,7 @@
 		</trim>
 	</insert>
 	<select id="countByExample"
-		parameterType="com.marico.ncovreportsystem.pojo.TbSpecimenExample"
+		parameterType="com.jzyoa.pojo.TbSpecimenExample"
 		resultType="java.lang.Integer">
 		select count(*) from tb_specimen
 		<if test="_parameter != null">
@@ -719,7 +719,7 @@
 		</if>
 	</update>
 	<update id="updateByPrimaryKeySelective"
-		parameterType="com.marico.ncovreportsystem.pojo.TbSpecimen">
+		parameterType="com.jzyoa.pojo.TbSpecimen">
 		update tb_specimen
 		<set>
 			<if test="specimenCode != null">
@@ -779,7 +779,7 @@
 		where specimen_id = #{specimenId,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey"
-		parameterType="com.marico.ncovreportsystem.pojo.TbSpecimen">
+		parameterType="com.jzyoa.pojo.TbSpecimen">
 		update tb_specimen
 		set specimen_code =
 		#{specimenCode,jdbcType=VARCHAR},

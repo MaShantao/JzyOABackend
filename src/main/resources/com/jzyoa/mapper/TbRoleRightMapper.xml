@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.marico.ncovreportsystem.mapper.TbRoleRightMapper" >
-  <resultMap id="BaseResultMap" type="com.marico.ncovreportsystem.pojo.TbRoleRight" >
+<mapper namespace="com.jzyoa.mapper.TbRoleRightMapper" >
+  <resultMap id="BaseResultMap" type="com.jzyoa.pojo.TbRoleRight" >
     <id column="role_right_id" property="roleRightId" jdbcType="INTEGER" />
     <result column="role_id" property="roleId" jdbcType="INTEGER" />
     <result column="right_id" property="rightId" jdbcType="INTEGER" />
@@ -67,7 +67,7 @@
   <sql id="Base_Column_List" >
     role_right_id, role_id, right_id
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.marico.ncovreportsystem.pojo.TbRoleRightExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jzyoa.pojo.TbRoleRightExample" >
     select
     <if test="distinct" >
       distinct
@@ -91,19 +91,19 @@
     delete from tb_role_right
     where role_right_id = #{roleRightId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.marico.ncovreportsystem.pojo.TbRoleRightExample" >
+  <delete id="deleteByExample" parameterType="com.jzyoa.pojo.TbRoleRightExample" >
     delete from tb_role_right
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.marico.ncovreportsystem.pojo.TbRoleRight" >
+  <insert id="insert" parameterType="com.jzyoa.pojo.TbRoleRight" >
     insert into tb_role_right (role_right_id, role_id, right_id
       )
     values (#{roleRightId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{rightId,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.marico.ncovreportsystem.pojo.TbRoleRight" >
+  <insert id="insertSelective" parameterType="com.jzyoa.pojo.TbRoleRight" >
     insert into tb_role_right
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="roleRightId != null" >
@@ -128,7 +128,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.marico.ncovreportsystem.pojo.TbRoleRightExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.jzyoa.pojo.TbRoleRightExample" resultType="java.lang.Integer" >
     select count(*) from tb_role_right
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -160,7 +160,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.marico.ncovreportsystem.pojo.TbRoleRight" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzyoa.pojo.TbRoleRight" >
     update tb_role_right
     <set >
       <if test="roleId != null" >
@@ -172,7 +172,7 @@
     </set>
     where role_right_id = #{roleRightId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.marico.ncovreportsystem.pojo.TbRoleRight" >
+  <update id="updateByPrimaryKey" parameterType="com.jzyoa.pojo.TbRoleRight" >
     update tb_role_right
     set role_id = #{roleId,jdbcType=INTEGER},
       right_id = #{rightId,jdbcType=INTEGER}

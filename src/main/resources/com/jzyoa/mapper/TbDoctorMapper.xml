@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.marico.ncovreportsystem.mapper.TbDoctorMapper" >
-  <resultMap id="BaseResultMap" type="com.marico.ncovreportsystem.pojo.TbDoctor" >
+<mapper namespace="com.jzyoa.mapper.TbDoctorMapper" >
+  <resultMap id="BaseResultMap" type="com.jzyoa.pojo.TbDoctor" >
     <id column="doc_id" property="docId" jdbcType="INTEGER" />
     <result column="dept_id" property="deptId" jdbcType="INTEGER" />
     <result column="doc_name" property="docName" jdbcType="VARCHAR" />
@@ -68,7 +68,7 @@
   <sql id="Base_Column_List" >
     doc_id, dept_id, doc_name, mark
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.marico.ncovreportsystem.pojo.TbDoctorExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jzyoa.pojo.TbDoctorExample" >
     select
     <if test="distinct" >
       distinct
@@ -92,19 +92,19 @@
     delete from tb_doctor
     where doc_id = #{docId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.marico.ncovreportsystem.pojo.TbDoctorExample" >
+  <delete id="deleteByExample" parameterType="com.jzyoa.pojo.TbDoctorExample" >
     delete from tb_doctor
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.marico.ncovreportsystem.pojo.TbDoctor" >
+  <insert id="insert" parameterType="com.jzyoa.pojo.TbDoctor" >
     insert into tb_doctor (doc_id, dept_id, doc_name, 
       mark)
     values (#{docId,jdbcType=INTEGER}, #{deptId,jdbcType=INTEGER}, #{docName,jdbcType=VARCHAR}, 
       #{mark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.marico.ncovreportsystem.pojo.TbDoctor" >
+  <insert id="insertSelective" parameterType="com.jzyoa.pojo.TbDoctor" >
     insert into tb_doctor
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="docId != null" >
@@ -135,7 +135,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.marico.ncovreportsystem.pojo.TbDoctorExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.jzyoa.pojo.TbDoctorExample" resultType="java.lang.Integer" >
     select count(*) from tb_doctor
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -171,7 +171,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.marico.ncovreportsystem.pojo.TbDoctor" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzyoa.pojo.TbDoctor" >
     update tb_doctor
     <set >
       <if test="deptId != null" >
@@ -186,7 +186,7 @@
     </set>
     where doc_id = #{docId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.marico.ncovreportsystem.pojo.TbDoctor" >
+  <update id="updateByPrimaryKey" parameterType="com.jzyoa.pojo.TbDoctor" >
     update tb_doctor
     set dept_id = #{deptId,jdbcType=INTEGER},
       doc_name = #{docName,jdbcType=VARCHAR},

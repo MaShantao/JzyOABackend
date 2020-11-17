@@ -44,7 +44,7 @@
 					<!--如果端口号改为8088：那么访问的时候路径的端口就要写成8088 <port>8088</port> -->
 					<!-- 如果设置为/，则项目了路径为http://localhost:端口号 / -->
 					<!-- 如果设置为/lw，则项目了路径为http://localhost:端口号/lw -->
-					<path>/ncovreportsystem</path>
+					<path>/jzyoa</path>
 				</configuration>
 			</plugin>
 		</plugins>

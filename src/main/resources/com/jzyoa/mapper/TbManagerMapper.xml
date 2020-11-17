@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.marico.ncovreportsystem.mapper.TbManagerMapper" >
-  <resultMap id="BaseResultMap" type="com.marico.ncovreportsystem.pojo.TbManager" >
+<mapper namespace="com.jzyoa.mapper.TbManagerMapper" >
+  <resultMap id="BaseResultMap" type="com.jzyoa.pojo.TbManager" >
     <id column="manager_id" property="managerId" jdbcType="INTEGER" />
     <result column="manager_name" property="managerName" jdbcType="VARCHAR" />
     <result column="autograph" property="autograph" jdbcType="VARCHAR" />
@@ -68,7 +68,7 @@
   <sql id="Base_Column_List" >
     manager_id, manager_name, autograph, manager_type
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.marico.ncovreportsystem.pojo.TbManagerExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jzyoa.pojo.TbManagerExample" >
     select
     <if test="distinct" >
       distinct
@@ -92,19 +92,19 @@
     delete from tb_manager
     where manager_id = #{managerId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.marico.ncovreportsystem.pojo.TbManagerExample" >
+  <delete id="deleteByExample" parameterType="com.jzyoa.pojo.TbManagerExample" >
     delete from tb_manager
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.marico.ncovreportsystem.pojo.TbManager" >
+  <insert id="insert" parameterType="com.jzyoa.pojo.TbManager" >
     insert into tb_manager (manager_id, manager_name, autograph, 
       manager_type)
     values (#{managerId,jdbcType=INTEGER}, #{managerName,jdbcType=VARCHAR}, #{autograph,jdbcType=VARCHAR}, 
       #{managerType,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.marico.ncovreportsystem.pojo.TbManager" >
+  <insert id="insertSelective" parameterType="com.jzyoa.pojo.TbManager" >
     insert into tb_manager
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="managerId != null" >
@@ -135,7 +135,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.marico.ncovreportsystem.pojo.TbManagerExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.jzyoa.pojo.TbManagerExample" resultType="java.lang.Integer" >
     select count(*) from tb_manager
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -171,7 +171,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.marico.ncovreportsystem.pojo.TbManager" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzyoa.pojo.TbManager" >
     update tb_manager
     <set >
       <if test="managerName != null" >
@@ -186,7 +186,7 @@
     </set>
     where manager_id = #{managerId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.marico.ncovreportsystem.pojo.TbManager" >
+  <update id="updateByPrimaryKey" parameterType="com.jzyoa.pojo.TbManager" >
     update tb_manager
     set manager_name = #{managerName,jdbcType=VARCHAR},
       autograph = #{autograph,jdbcType=VARCHAR},

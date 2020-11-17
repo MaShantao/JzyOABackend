@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper
-	namespace="com.marico.ncovreportsystem.mapper.TbUserMapper">
+	namespace="com.jzyoa.mapper.TbUserMapper">
 	<!-- 角色的映射 -->
 	<resultMap id="RoleResultMap"
-		type="com.marico.ncovreportsystem.pojo.TbRole">
+		type="com.jzyoa.pojo.TbRole">
 		<id column="role_id" property="roleId" jdbcType="INTEGER" />
 		<result column="role.role_name" property="roleName"
 			jdbcType="VARCHAR" />
@@ -15,7 +15,7 @@
 	</resultMap>
 
 	<resultMap id="BaseResultMap"
-		type="com.marico.ncovreportsystem.pojo.TbUser">
+		type="com.jzyoa.pojo.TbUser">
 		<id column="user_id" property="userId" jdbcType="INTEGER" />
 		<result column="role_id" property="roleId" jdbcType="INTEGER" />
 		<result column="login_name" property="loginName"
@@ -109,7 +109,7 @@
 		register_time,department, post, user_status
 	</sql>
 	<select id="selectByExample" resultMap="BaseResultMap"
-		parameterType="com.marico.ncovreportsystem.pojo.TbUserExample">
+		parameterType="com.jzyoa.pojo.TbUserExample">
 		select
 		<if test="distinct">
 			distinct
@@ -137,14 +137,14 @@
 		#{userId,jdbcType=INTEGER}
 	</delete>
 	<delete id="deleteByExample"
-		parameterType="com.marico.ncovreportsystem.pojo.TbUserExample">
+		parameterType="com.jzyoa.pojo.TbUserExample">
 		delete from tb_user
 		<if test="_parameter != null">
 			<include refid="Example_Where_Clause" />
 		</if>
 	</delete>
 	<insert id="insert"
-		parameterType="com.marico.ncovreportsystem.pojo.TbUser">
+		parameterType="com.jzyoa.pojo.TbUser">
 		insert into tb_user (user_id, role_id, login_name,
 		login_passwd, name, telephone,
 		email, register_time, department,
@@ -161,7 +161,7 @@
 		#{post,jdbcType=VARCHAR}, #{userStatus,jdbcType=INTEGER})
 	</insert>
 	<insert id="insertSelective"
-		parameterType="com.marico.ncovreportsystem.pojo.TbUser">
+		parameterType="com.jzyoa.pojo.TbUser">
 		insert into tb_user
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="userId != null">
@@ -235,7 +235,7 @@
 		</trim>
 	</insert>
 	<select id="countByExample"
-		parameterType="com.marico.ncovreportsystem.pojo.TbUserExample"
+		parameterType="com.jzyoa.pojo.TbUserExample"
 		resultType="java.lang.Integer">
 		select count(*) from tb_user
 		<if test="_parameter != null">
@@ -311,7 +311,7 @@
 		</if>
 	</update>
 	<update id="updateByPrimaryKeySelective"
-		parameterType="com.marico.ncovreportsystem.pojo.TbUser">
+		parameterType="com.jzyoa.pojo.TbUser">
 		update tb_user
 		<set>
 			<if test="roleId != null">
@@ -348,7 +348,7 @@
 		where user_id = #{userId,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey"
-		parameterType="com.marico.ncovreportsystem.pojo.TbUser">
+		parameterType="com.jzyoa.pojo.TbUser">
 		update tb_user
 		set role_id = #{roleId,jdbcType=INTEGER},
 		login_name = #{loginName,jdbcType=VARCHAR},

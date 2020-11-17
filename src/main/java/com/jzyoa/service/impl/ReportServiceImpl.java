@@ -2,6 +2,7 @@ package com.jzyoa.service.impl;
 
 import java.io.File;
 
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -40,7 +41,6 @@ import com.jzyoa.service.ReportService;
 import com.jzyoa.service.SpecimenService;
 import com.jzyoa.util.FileUtil;
 import com.jzyoa.util.PDFUtil;
-import com.jzyoa.util.StringUtil;
 import com.jzyoa.util.UUIDUtil;
 
 @Service
@@ -202,7 +202,6 @@ public class ReportServiceImpl implements ReportService {
 		for (TbSpecimen specimen : specimenList) {
 			report.setSpecimen(specimen);
 			report.setSpecimenId(specimen.getSpecimenId());
-			report.setCreateTime(StringUtil.fixInvalidTime(createTime));
 			if (specimen.getTestTypeId() != null) {
 				report.getSpecimen().setTestType(testTypeMap.get(specimen.getTestTypeId()));
 				report.setSpecimenResult(resultMap.get(specimen.getTestTypeId()));
@@ -273,14 +272,14 @@ public class ReportServiceImpl implements ReportService {
 		textMap.put("patient_age", saveReport.getSpecimen().getPatientAge() == null ? ""
 				: saveReport.getSpecimen().getPatientAge().toString());
 		textMap.put("bed_num", saveReport.getSpecimen().getBedNum());
-		textMap.put("create_time", StringUtil.fixInvalidTime(saveReport.getSpecimen().getCreateTime()));
+		textMap.put("create_time",saveReport.getSpecimen().getCreateTime());
 		textMap.put("patient_tellphone", saveReport.getSpecimen().getPatientTellphone());
 		textMap.put("doc_name",
 				saveReport.getSpecimen().getDoctor() == null ? "" : saveReport.getSpecimen().getDoctor().getDocName());
 		textMap.put("patient_type", saveReport.getSpecimen().getPatientType() == null ? ""
 				: saveReport.getSpecimen().getPatientType().getDictValue());
-		textMap.put("recv_time", StringUtil.fixInvalidTime(saveReport.getSpecimen().getRecvTime()));
-		textMap.put("report_createtime", StringUtil.fixInvalidTime(saveReport.getCreateTime()));
+		textMap.put("recv_time", saveReport.getSpecimen().getRecvTime());
+		textMap.put("report_createtime", saveReport.getCreateTime());
 
 		Map<String, String> imgMap = new HashMap();
 		if (new File(saveReport.getReviewer().getAutograph()).exists()) {
