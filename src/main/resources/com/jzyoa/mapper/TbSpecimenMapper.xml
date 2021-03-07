@@ -325,7 +325,8 @@
 		'bed_num',specimen.patient_name AS 'patient_name',specimen.patient_age
 		AS 'patient_age',specimen.patient_gender AS 'patient_gender',
 		specimen.patient_tellphone AS 'patient_tellphone',patient_type_id AS
-		'patient_type_id',patient_type.dict_value AS 'patient_type.dict_value'
+		'patient_type_id',patient_type.dict_value AS 'patient_type.dict_value',
+		specimen_situation.dict_value AS 'specimen_situation.dict_value'
 	</sql>
 
 	<select id="selectByExample" resultMap="BaseResultMap"
